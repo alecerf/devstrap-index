@@ -8,9 +8,10 @@ version discovery, download URL, checksum verification, and installation mode.
 ## Structure
 
 ```
-go.json              # one file per tool
-node.json
-golangci-lint.json
+tools/               # one file per tool
+  go.json
+  node.json
+  golangci-lint.json
 tools.json           # auto-generated listing of tool names
 ```
 
@@ -19,6 +20,6 @@ by hand.
 
 ## Adding a Tool
 
-Create a `{name}.json` file at the root following the schema. On push, the
+Create a `{name}.json` file in the `tools/` directory following the schema. On push, the
 GitHub Action regenerates `tools.json`. See existing definitions for examples
 of both `json_api` and `github_release` source types.
