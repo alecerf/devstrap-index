@@ -1,6 +1,7 @@
 {
   "name": "node",
   "description": "Node.js JavaScript runtime",
+  "homepage": "https://nodejs.org",
   "source": {
     "type": "json_api",
     "url": "https://nodejs.org/dist/index.json",

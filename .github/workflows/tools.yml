@@ -31,16 +31,17 @@ jobs:
       - name: Generate TOOLS.md
         run: |
           cat tools/*.json | jq -s '
-            "# Available tools\n\n> Auto-generated from tool definitions. Do not edit.\n\n| Tool | Description | Source | Install | Platforms |\n|------|-------------|--------|---------|-----------|\n" +
+            "# Available tools\n\n> Auto-generated from tool definitions. Do not edit.\n\n| Tool | Description | Install | Platforms |\n|------|-------------|---------|-----------|\n" +
             (sort_by(.name) | map(
-              "| **" + .name + "** | " + .description + " | `" + .source.type + "` | `" + .install.mode + "` | " + (.platforms.os | join(", ")) + " |"
+              "| [**" + .name + "**](" + .homepage + ") | " + .description + " | `" + .install.mode + "` | " + (.platforms.os | join(", ")) + " |"
             ) | join("\n")) +
             "\n\n## Details\n\n" +
             (sort_by(.name) | map(
-              "### " + .name + "\n\n" +
+              "### [" + .name + "](" + .homepage + ")\n\n" +
               .description + "\n\n" +
+              "- **Homepage:** " + .homepage + "\n" +
               "- **Source:** `" + .source.type + "`" +
-              (if .source.type == "github_release" then " ([" + .source.owner + "/" + .source.repo + "](https://github.com/" + .source.owner + "/" + .source.repo + "))" else "" end) + "\n" +
+              (if .source.type == "github_release" then " (`" + .source.owner + "/" + .source.repo + "`)" else "" end) + "\n" +
               "- **Install mode:** `" + .install.mode + "` → `" + .install.dest + "/`\n" +
               "- **Platforms:** " + (.platforms.os | join(", ")) + " (" + (.platforms.arch | keys | join(", ")) + ")\n" +
               "- **Detect:** `" + .detect.binary + " " + (.detect.args | join(" ")) + "`\n"

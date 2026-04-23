@@ -1,6 +1,7 @@
 {
   "name": "go",
   "description": "The Go programming language",
+  "homepage": "https://go.dev",
   "source": {
     "type": "json_api",
     "url": "https://go.dev/dl/?mode=json",

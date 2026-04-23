@@ -1,6 +1,7 @@
 {
   "name": "golangci-lint",
   "description": "Fast Go linters runner",
+  "homepage": "https://github.com/golangci/golangci-lint",
   "source": {
     "type": "github_release",
     "owner": "golangci",
