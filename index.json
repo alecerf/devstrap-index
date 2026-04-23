@@ -1,7 +1,108 @@
-{
-  "tools": [
-    "tools/go.json",
-    "tools/node.json",
-    "tools/golangci-lint.json"
-  ]
-}
+[
+  {
+    "name": "go",
+    "description": "The Go programming language",
+    "source": {
+      "type": "json_api",
+      "url": "https://go.dev/dl/?mode=json",
+      "version": {
+        "path": "[0].version",
+        "strip_prefix": "go"
+      },
+      "file_match": {
+        "list_path": "[0].files",
+        "filename_field": "filename",
+        "filename_contains": "{{.OS}}-{{.Arch}}.tar.gz",
+        "checksum_field": "sha256"
+      }
+    },
+    "download": {
+      "url": "https://go.dev/dl/{{.Filename}}"
+    },
+    "install": {
+      "mode": "directory",
+      "dest": "go",
+      "strip_components": 1
+    },
+    "detect": {
+      "binary": "go/bin/go",
+      "args": ["version"],
+      "version_regex": "go([0-9]+\\.[0-9]+\\.[0-9]+)"
+    },
+    "platforms": {
+      "os": ["darwin", "linux"],
+      "arch": {
+        "amd64": "amd64",
+        "arm64": "arm64"
+      }
+    }
+  },
+  {
+    "name": "node",
+    "description": "Node.js JavaScript runtime",
+    "source": {
+      "type": "json_api",
+      "url": "https://nodejs.org/dist/index.json",
+      "version": {
+        "path": "[0].version",
+        "strip_prefix": "v"
+      }
+    },
+    "download": {
+      "url": "https://nodejs.org/dist/v{{.Version}}/node-v{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz",
+      "checksum": {
+        "url": "https://nodejs.org/dist/v{{.Version}}/SHASUMS256.txt"
+      }
+    },
+    "install": {
+      "mode": "directory",
+      "dest": "node",
+      "strip_components": 1
+    },
+    "detect": {
+      "binary": "node/bin/node",
+      "args": ["-v"],
+      "version_regex": "v?([\\d.]+)"
+    },
+    "platforms": {
+      "os": ["darwin", "linux"],
+      "arch": {
+        "amd64": "x64",
+        "arm64": "arm64"
+      }
+    }
+  },
+  {
+    "name": "golangci-lint",
+    "description": "Fast Go linters runner",
+    "source": {
+      "type": "github_release",
+      "owner": "golangci",
+      "repo": "golangci-lint"
+    },
+    "download": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/golangci-lint-{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz",
+      "checksum": {
+        "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/golangci-lint-{{.Version}}-checksums.txt"
+      }
+    },
+    "install": {
+      "mode": "binary",
+      "dest": "bin",
+      "binary_name": "golangci-lint",
+      "archive_path": "golangci-lint-{{.Version}}-{{.OS}}-{{.Arch}}/golangci-lint"
+    },
+    "detect": {
+      "binary": "bin/golangci-lint",
+      "args": ["version"],
+      "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
+    },
+    "platforms": {
+      "os": ["darwin", "linux"],
+      "arch": {
+        "amd64": "amd64",
+        "arm64": "arm64"
+      }
+    }
+  }
+]
