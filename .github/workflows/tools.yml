@@ -17,7 +17,7 @@ jobs:
 
       - name: Generate tools.json
         run: |
-          find tools -name '*.json' -maxdepth 1 \
+          find tools -maxdepth 1 -name '*.json' \
             | sort \
             | jq -R . \
             | jq -s . > tools.json
@@ -27,4 +27,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add tools.json
-          git diff --cached --quiet || git commit -m "chore: update tool listing" && git push
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: update tool listing"
+            git push
+          fi
