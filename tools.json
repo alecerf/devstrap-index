@@ -1,5 +1,5 @@
 [
-  "go",
-  "node",
-  "golangci-lint"
+  "tools/go.json",
+  "tools/node.json",
+  "tools/golangci-lint.json"
 ]

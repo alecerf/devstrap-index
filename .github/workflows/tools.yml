@@ -17,9 +17,7 @@ jobs:
 
       - name: Generate tools.json
         run: |
-          ls -1 tools/*.json \
-            | xargs -n1 basename \
-            | sed 's/\.json$//' \
+          find tools -name '*.json' -maxdepth 1 \
             | sort \
             | jq -R . \
             | jq -s . > tools.json
