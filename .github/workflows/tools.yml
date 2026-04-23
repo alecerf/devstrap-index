@@ -28,11 +28,30 @@ jobs:
             | jq -R . \
             | jq -s . > tools.json
 
+      - name: Generate TOOLS.md
+        run: |
+          cat tools/*.json | jq -s '
+            "# Available tools\n\n> Auto-generated from tool definitions. Do not edit.\n\n| Tool | Description | Source | Install | Platforms |\n|------|-------------|--------|---------|-----------|\n" +
+            (sort_by(.name) | map(
+              "| **" + .name + "** | " + .description + " | `" + .source.type + "` | `" + .install.mode + "` | " + (.platforms.os | join(", ")) + " |"
+            ) | join("\n")) +
+            "\n\n## Details\n\n" +
+            (sort_by(.name) | map(
+              "### " + .name + "\n\n" +
+              .description + "\n\n" +
+              "- **Source:** `" + .source.type + "`" +
+              (if .source.type == "github_release" then " ([" + .source.owner + "/" + .source.repo + "](https://github.com/" + .source.owner + "/" + .source.repo + "))" else "" end) + "\n" +
+              "- **Install mode:** `" + .install.mode + "` → `" + .install.dest + "/`\n" +
+              "- **Platforms:** " + (.platforms.os | join(", ")) + " (" + (.platforms.arch | keys | join(", ")) + ")\n" +
+              "- **Detect:** `" + .detect.binary + " " + (.detect.args | join(" ")) + "`\n"
+            ) | join("\n"))
+          ' -r > TOOLS.md
+
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add tools.json tools/*.json
+          git add tools.json TOOLS.md tools/*.json
           if ! git diff --cached --quiet; then
             git commit -m "chore: update tool listing"
             git push
