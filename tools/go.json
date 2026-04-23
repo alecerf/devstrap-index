@@ -1,0 +1,38 @@
+{
+  "name": "go",
+  "description": "The Go programming language",
+  "source": {
+    "type": "json_api",
+    "url": "https://go.dev/dl/?mode=json",
+    "version": {
+      "path": "[0].version",
+      "strip_prefix": "go"
+    },
+    "file_match": {
+      "list_path": "[0].files",
+      "filename_field": "filename",
+      "filename_contains": "{{.OS}}-{{.Arch}}.tar.gz",
+      "checksum_field": "sha256"
+    }
+  },
+  "download": {
+    "url": "https://go.dev/dl/{{.Filename}}"
+  },
+  "install": {
+    "mode": "directory",
+    "dest": "go",
+    "strip_components": 1
+  },
+  "detect": {
+    "binary": "go/bin/go",
+    "args": ["version"],
+    "version_regex": "go([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": ["darwin", "linux"],
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}

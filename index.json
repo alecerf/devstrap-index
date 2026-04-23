@@ -1,0 +1,6 @@
+{
+  "tools": [
+    "tools/go.json",
+    "tools/golangci-lint.json"
+  ]
+}

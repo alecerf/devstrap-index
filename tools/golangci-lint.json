@@ -1,0 +1,33 @@
+{
+  "name": "golangci-lint",
+  "description": "Fast Go linters runner",
+  "source": {
+    "type": "github_release",
+    "owner": "golangci",
+    "repo": "golangci-lint"
+  },
+  "download": {
+    "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/golangci-lint-{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz",
+    "checksum": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/golangci-lint-{{.Version}}-checksums.txt"
+    }
+  },
+  "install": {
+    "mode": "binary",
+    "dest": "bin",
+    "binary_name": "golangci-lint",
+    "archive_path": "golangci-lint-{{.Version}}-{{.OS}}-{{.Arch}}/golangci-lint"
+  },
+  "detect": {
+    "binary": "bin/golangci-lint",
+    "args": ["version"],
+    "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": ["darwin", "linux"],
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}
