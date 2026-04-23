@@ -10,7 +10,8 @@ version discovery, download URL, checksum verification, and installation mode.
 ```
 index.json          # manifest listing all tool definition files
 tools/
-  go.json           # json_api source, directory install
+  go.json           # json_api source, file_match checksum, directory install
+  node.json         # json_api source, sha256 file checksum, directory install
   golangci-lint.json # github_release source, binary install
 ```
 
