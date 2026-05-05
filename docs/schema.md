@@ -71,8 +71,20 @@ See [install modes](install-modes.md).
 
 | Field  | Required | Description                                                        |
 |--------|----------|--------------------------------------------------------------------|
-| `os`   | yes      | Supported operating systems (`darwin`, `linux`)                    |
+| `os`   | yes      | Map from `GOOS` to tool-specific OS names                          |
 | `arch` | yes      | Map from `GOARCH` to tool-specific arch names                      |
+
+Example — tools using native OS names:
+
+```json
+"os": { "darwin": "darwin", "linux": "linux" }
+```
+
+Example — Python (python-build-standalone) uses different OS names:
+
+```json
+"os": { "darwin": "apple-darwin", "linux": "unknown-linux-gnu" }
+```
 
 Example — Node.js uses `x64` instead of `amd64`:
 

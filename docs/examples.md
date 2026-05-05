@@ -34,7 +34,7 @@ The most common pattern for GitHub-hosted CLI tools.
     "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
   },
   "platforms": {
-    "os": ["darwin", "linux"],
+    "os": { "darwin": "darwin", "linux": "linux" },
     "arch": { "amd64": "amd64", "arm64": "arm64" }
   }
 }
@@ -74,7 +74,7 @@ For tools with a JSON version API and a separate checksums file.
     "version_regex": "v?([\\d.]+)"
   },
   "platforms": {
-    "os": ["darwin", "linux"],
+    "os": { "darwin": "darwin", "linux": "linux" },
     "arch": { "amd64": "x64", "arm64": "arm64" }
   }
 }
@@ -118,8 +118,50 @@ response. No separate checksum download needed.
     "version_regex": "go([0-9]+\\.[0-9]+\\.[0-9]+)"
   },
   "platforms": {
-    "os": ["darwin", "linux"],
+    "os": { "darwin": "darwin", "linux": "linux" },
     "arch": { "amd64": "amd64", "arm64": "arm64" }
+  }
+}
+```
+
+## `github_release` + asset version extraction + directory install
+
+For tools where the release tag is not the tool version (e.g. a date-based tag)
+and the version must be extracted from asset filenames.
+
+```json
+{
+  "name": "python",
+  "description": "Python programming language",
+  "homepage": "https://www.python.org",
+  "source": {
+    "type": "github_release",
+    "owner": "astral-sh",
+    "repo": "python-build-standalone",
+    "version": {
+      "asset_regex": "cpython-([0-9]+\\.[0-9]+\\.[0-9]+)\\+.*-{{.Arch}}-{{.OS}}-install_only\\.tar\\.gz",
+      "pick": "highest"
+    }
+  },
+  "download": {
+    "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/{{.Tag}}/cpython-{{.Version}}+{{.Tag}}-{{.Arch}}-{{.OS}}-install_only.tar.gz",
+    "checksum": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/{{.Tag}}/SHA256SUMS"
+    }
+  },
+  "install": {
+    "mode": "directory",
+    "dest": "python",
+    "strip_components": 1
+  },
+  "detect": {
+    "binary": "python/bin/python3",
+    "args": ["--version"],
+    "version_regex": "Python ([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": { "darwin": "apple-darwin", "linux": "unknown-linux-gnu" },
+    "arch": { "amd64": "x86_64", "arm64": "aarch64" }
   }
 }
 ```

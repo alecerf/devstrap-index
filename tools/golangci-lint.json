@@ -27,10 +27,10 @@
     "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
   },
   "platforms": {
-    "os": [
-      "darwin",
-      "linux"
-    ],
+    "os": {
+      "darwin": "darwin",
+      "linux": "linux"
+    },
     "arch": {
       "amd64": "amd64",
       "arm64": "arm64"

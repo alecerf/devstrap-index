@@ -18,6 +18,32 @@ stripped automatically. This is the simplest option for tools hosted on GitHub.
 
 No `version` object is needed — the tag **is** the version.
 
+### `version` — asset-based version extraction
+
+When the release tag is not the tool version (e.g. python-build-standalone uses
+a date tag like `20260504`), use `version.asset_regex` to extract the version
+from asset filenames.
+
+```json
+"source": {
+  "type": "github_release",
+  "owner": "astral-sh",
+  "repo": "python-build-standalone",
+  "version": {
+    "asset_regex": "cpython-([0-9]+\\.[0-9]+\\.[0-9]+)\\+.*-{{.Arch}}-{{.OS}}-install_only\\.tar\\.gz",
+    "pick": "highest"
+  }
+}
+```
+
+| Field         | Description                                                              |
+|---------------|--------------------------------------------------------------------------|
+| `asset_regex` | Go template + regex applied to asset names. First capture group = version |
+| `pick`        | `"highest"` selects the highest semver when multiple versions match       |
+
+Template variables `{{.OS}}` and `{{.Arch}}` are available (mapped values).
+The release tag is available as `{{.Tag}}` in download URL templates.
+
 > **Note:** this uses the unauthenticated GitHub API, which is rate-limited to
 > 60 requests/hour per IP.
 

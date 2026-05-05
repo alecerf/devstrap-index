@@ -1,0 +1,42 @@
+{
+  "name": "python",
+  "description": "Python programming language",
+  "homepage": "https://www.python.org",
+  "source": {
+    "type": "github_release",
+    "owner": "astral-sh",
+    "repo": "python-build-standalone",
+    "version": {
+      "asset_regex": "cpython-([0-9]+\\.[0-9]+\\.[0-9]+)\\+.*-{{.Arch}}-{{.OS}}-install_only\\.tar\\.gz",
+      "pick": "highest"
+    }
+  },
+  "download": {
+    "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/{{.Tag}}/cpython-{{.Version}}+{{.Tag}}-{{.Arch}}-{{.OS}}-install_only.tar.gz",
+    "checksum": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/{{.Tag}}/SHA256SUMS"
+    }
+  },
+  "install": {
+    "mode": "directory",
+    "dest": "python",
+    "strip_components": 1
+  },
+  "detect": {
+    "binary": "python/bin/python3",
+    "args": [
+      "--version"
+    ],
+    "version_regex": "Python ([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": {
+      "darwin": "apple-darwin",
+      "linux": "unknown-linux-gnu"
+    },
+    "arch": {
+      "amd64": "x86_64",
+      "arm64": "aarch64"
+    }
+  }
+}

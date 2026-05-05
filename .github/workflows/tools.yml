@@ -32,7 +32,7 @@ jobs:
           cat tools/*.json | jq -s '
             "# Available tools\n\n> Auto-generated from tool definitions. Do not edit.\n\n| Tool | Description | Install | Platforms |\n|------|-------------|---------|-----------|\n" +
             (sort_by(.name) | map(
-              "| [**" + .name + "**](" + .homepage + ") | " + .description + " | `" + .install.mode + "` | " + (.platforms.os | join(", ")) + " |"
+              "| [**" + .name + "**](" + .homepage + ") | " + .description + " | `" + .install.mode + "` | " + (.platforms.os | keys | join(", ")) + " |"
             ) | join("\n")) +
             "\n\n## Details\n\n" +
             (sort_by(.name) | map(
@@ -42,7 +42,7 @@ jobs:
               "- **Source:** `" + .source.type + "`" +
               (if .source.type == "github_release" then " (`" + .source.owner + "/" + .source.repo + "`)" else "" end) + "\n" +
               "- **Install mode:** `" + .install.mode + "` → `" + .install.dest + "/`\n" +
-              "- **Platforms:** " + (.platforms.os | join(", ")) + " (" + (.platforms.arch | keys | join(", ")) + ")\n" +
+              "- **Platforms:** " + (.platforms.os | keys | join(", ")) + " (" + (.platforms.arch | keys | join(", ")) + ")\n" +
               "- **Detect:** `" + .detect.binary + " " + (.detect.args | join(" ")) + "`\n"
             ) | join("\n"))
           ' -r > TOOLS.md
