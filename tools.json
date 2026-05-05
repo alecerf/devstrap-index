@@ -1,5 +1,6 @@
 [
   "tools/go.json",
   "tools/golangci-lint.json",
-  "tools/node.json"
+  "tools/node.json",
+  "tools/python.json"
 ]
