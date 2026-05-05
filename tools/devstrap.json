@@ -1,0 +1,39 @@
+{
+  "name": "devstrap",
+  "description": "Bootstrap and update development tools",
+  "homepage": "https://github.com/alecerf/devstrap",
+  "source": {
+    "type": "github_release",
+    "owner": "alecerf",
+    "repo": "devstrap"
+  },
+  "download": {
+    "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/devstrap_{{.Version}}_{{.OS}}_{{.Arch}}.tar.gz",
+    "checksum": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/checksums.txt"
+    }
+  },
+  "install": {
+    "mode": "binary",
+    "dest": "bin",
+    "binary_name": "devstrap",
+    "archive_path": "devstrap"
+  },
+  "detect": {
+    "binary": "bin/devstrap",
+    "args": [
+      "version"
+    ],
+    "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": {
+      "darwin": "darwin",
+      "linux": "linux"
+    },
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}
