@@ -1,0 +1,40 @@
+{
+  "name": "k9s",
+  "description": "Kubernetes TUI manager",
+  "homepage": "https://github.com/derailed/k9s",
+  "source": {
+    "type": "github_release",
+    "owner": "derailed",
+    "repo": "k9s"
+  },
+  "download": {
+    "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/k9s_{{.OS}}_{{.Arch}}.tar.gz",
+    "checksum": {
+      "url": "https://github.com/{{.Source.Owner}}/{{.Source.Repo}}/releases/download/v{{.Version}}/checksums.sha256"
+    }
+  },
+  "install": {
+    "mode": "binary",
+    "dest": "bin",
+    "binary_name": "k9s",
+    "archive_path": "k9s"
+  },
+  "detect": {
+    "binary": "bin/k9s",
+    "args": [
+      "version",
+      "--short"
+    ],
+    "version_regex": "([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": {
+      "darwin": "Darwin",
+      "linux": "Linux"
+    },
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}
