@@ -11,6 +11,7 @@
 | [**kubectl**](https://kubernetes.io/docs/reference/kubectl/) | Kubernetes command-line tool | `direct` | darwin, linux |
 | [**node**](https://nodejs.org) | Node.js JavaScript runtime | `directory` | darwin, linux |
 | [**python**](https://www.python.org) | Python programming language | `directory` | darwin, linux |
+| [**terraform**](https://www.terraform.io) | Infrastructure as Code tool | `binary` | darwin, linux |
 
 ## Details
 
@@ -83,4 +84,14 @@ Python programming language
 - **Install mode:** `directory` → `python/`
 - **Platforms:** darwin, linux (amd64, arm64)
 - **Detect:** `python/bin/python3 --version`
+
+### [terraform](https://www.terraform.io)
+
+Infrastructure as Code tool
+
+- **Homepage:** https://www.terraform.io
+- **Source:** `github_release` (`hashicorp/terraform`)
+- **Install mode:** `binary` → `bin/`
+- **Platforms:** darwin, linux (amd64, arm64)
+- **Detect:** `bin/terraform version`
 
