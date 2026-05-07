@@ -2,6 +2,7 @@
   "tools/devstrap.json",
   "tools/go.json",
   "tools/golangci-lint.json",
+  "tools/kubectl.json",
   "tools/node.json",
   "tools/python.json"
 ]

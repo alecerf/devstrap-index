@@ -7,6 +7,7 @@
 | [**devstrap**](https://github.com/alecerf/devstrap) | Bootstrap and update development tools | `binary` | darwin, linux |
 | [**go**](https://go.dev) | The Go programming language | `directory` | darwin, linux |
 | [**golangci-lint**](https://github.com/golangci/golangci-lint) | Fast Go linters runner | `binary` | darwin, linux |
+| [**kubectl**](https://kubernetes.io/docs/reference/kubectl/) | Kubernetes command-line tool | `direct` | darwin, linux |
 | [**node**](https://nodejs.org) | Node.js JavaScript runtime | `directory` | darwin, linux |
 | [**python**](https://www.python.org) | Python programming language | `directory` | darwin, linux |
 
@@ -41,6 +42,16 @@ Fast Go linters runner
 - **Install mode:** `binary` → `bin/`
 - **Platforms:** darwin, linux (amd64, arm64)
 - **Detect:** `bin/golangci-lint version`
+
+### [kubectl](https://kubernetes.io/docs/reference/kubectl/)
+
+Kubernetes command-line tool
+
+- **Homepage:** https://kubernetes.io/docs/reference/kubectl/
+- **Source:** `github_release` (`kubernetes/kubernetes`)
+- **Install mode:** `direct` → `/`
+- **Platforms:** darwin, linux (amd64, arm64)
+- **Detect:** `bin/kubectl version --client`
 
 ### [node](https://nodejs.org)
 
