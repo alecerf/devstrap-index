@@ -165,3 +165,40 @@ and the version must be extracted from asset filenames.
   }
 }
 ```
+
+## `github_release` + raw checksum + direct install
+
+For tools distributed as a standalone binary (no archive). The checksum file
+contains only the raw SHA-256 hash.
+
+```json
+{
+  "name": "kubectl",
+  "description": "Kubernetes command-line tool",
+  "homepage": "https://kubernetes.io/docs/reference/kubectl/",
+  "source": {
+    "type": "github_release",
+    "owner": "kubernetes",
+    "repo": "kubernetes"
+  },
+  "download": {
+    "url": "https://dl.k8s.io/release/v{{.Version}}/bin/{{.OS}}/{{.Arch}}/kubectl",
+    "checksum": {
+      "url": "https://dl.k8s.io/release/v{{.Version}}/bin/{{.OS}}/{{.Arch}}/kubectl.sha256"
+    }
+  },
+  "install": {
+    "mode": "direct",
+    "binary_name": "kubectl"
+  },
+  "detect": {
+    "binary": "bin/kubectl",
+    "args": ["version", "--client"],
+    "version_regex": "v([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": { "darwin": "darwin", "linux": "linux" },
+    "arch": { "amd64": "amd64", "arm64": "arm64" }
+  }
+}
+```

@@ -40,3 +40,10 @@ With this strategy, omit `download.checksum` entirely:
 The checksum verification will pass vacuously (no checksum to compare against).
 However, **you should always provide one** — integrity verification is a core
 safety guarantee of devstrap.
+
+## Raw hash files
+
+Some tools (e.g. kubectl) publish checksum files containing only the raw hex
+SHA-256 hash — no filename, no extra whitespace. devstrap detects this format
+automatically: if the file contains a single 64-character hex string, it is
+used directly as the expected checksum.

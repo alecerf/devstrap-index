@@ -49,10 +49,10 @@ checksum). See [checksums](checksums.md).
 
 | Field              | Required       | Description                                          |
 |--------------------|----------------|------------------------------------------------------|
-| `mode`             | yes            | `"directory"` or `"binary"`                          |
-| `dest`             | yes            | Destination path relative to base dir                |
+| `mode`             | yes            | `"directory"`, `"binary"`, or `"direct"`             |
+| `dest`             | `directory` only | Destination path relative to base dir                |
 | `strip_components` | `directory` only | Leading path segments to strip (default `0`)       |
-| `binary_name`      | `binary` only  | Filename for the installed binary                    |
+| `binary_name`      | `binary`, `direct` | Filename for the installed binary                    |
 | `archive_path`     | `binary` only  | Go template for path to binary inside the archive    |
 
 See [install modes](install-modes.md).

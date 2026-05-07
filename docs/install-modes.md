@@ -47,3 +47,24 @@ the destination. Use this for tools distributed as a standalone executable.
 
 > **Tip:** download and extract the archive manually to inspect its structure
 > and determine the correct `archive_path`.
+
+## `direct`
+
+Downloads a standalone binary and installs it directly — no archive extraction.
+Use this for tools distributed as a raw binary file (not wrapped in `.tar.gz`
+or `.zip`).
+
+```json
+"install": {
+  "mode": "direct",
+  "binary_name": "kubectl"
+}
+```
+
+| Field         | Required | Description                                              |
+|---------------|----------|----------------------------------------------------------|
+| `binary_name` | yes      | Filename for the installed binary                        |
+
+The downloaded file is installed into the global bin directory (`BinDir`) with
+the name `binary_name` and made executable. No `dest`, `archive_path`, or
+`strip_components` needed.
