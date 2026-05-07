@@ -1,0 +1,39 @@
+{
+  "name": "terraform",
+  "description": "Infrastructure as Code tool",
+  "homepage": "https://www.terraform.io",
+  "source": {
+    "type": "github_release",
+    "owner": "hashicorp",
+    "repo": "terraform"
+  },
+  "download": {
+    "url": "https://releases.hashicorp.com/terraform/{{.Version}}/terraform_{{.Version}}_{{.OS}}_{{.Arch}}.zip",
+    "checksum": {
+      "url": "https://releases.hashicorp.com/terraform/{{.Version}}/terraform_{{.Version}}_SHA256SUMS"
+    }
+  },
+  "install": {
+    "mode": "binary",
+    "dest": "bin",
+    "binary_name": "terraform",
+    "archive_path": "terraform"
+  },
+  "detect": {
+    "binary": "bin/terraform",
+    "args": [
+      "version"
+    ],
+    "version_regex": "Terraform v([0-9]+\\.[0-9]+\\.[0-9]+)"
+  },
+  "platforms": {
+    "os": {
+      "darwin": "darwin",
+      "linux": "linux"
+    },
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}
