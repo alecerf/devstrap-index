@@ -7,6 +7,7 @@
 | [**devstrap**](https://github.com/alecerf/devstrap) | Bootstrap and update development tools | `binary` | darwin, linux |
 | [**go**](https://go.dev) | The Go programming language | `directory` | darwin, linux |
 | [**golangci-lint**](https://github.com/golangci/golangci-lint) | Fast Go linters runner | `binary` | darwin, linux |
+| [**k9s**](https://github.com/derailed/k9s) | Kubernetes TUI manager | `binary` | darwin, linux |
 | [**kubectl**](https://kubernetes.io/docs/reference/kubectl/) | Kubernetes command-line tool | `direct` | darwin, linux |
 | [**node**](https://nodejs.org) | Node.js JavaScript runtime | `directory` | darwin, linux |
 | [**python**](https://www.python.org) | Python programming language | `directory` | darwin, linux |
@@ -42,6 +43,16 @@ Fast Go linters runner
 - **Install mode:** `binary` → `bin/`
 - **Platforms:** darwin, linux (amd64, arm64)
 - **Detect:** `bin/golangci-lint version`
+
+### [k9s](https://github.com/derailed/k9s)
+
+Kubernetes TUI manager
+
+- **Homepage:** https://github.com/derailed/k9s
+- **Source:** `github_release` (`derailed/k9s`)
+- **Install mode:** `binary` → `bin/`
+- **Platforms:** darwin, linux (amd64, arm64)
+- **Detect:** `bin/k9s version --short`
 
 ### [kubectl](https://kubernetes.io/docs/reference/kubectl/)
 
