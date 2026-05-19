@@ -1,0 +1,39 @@
+{
+  "name": "helm",
+  "description": "Kubernetes package manager",
+  "homepage": "https://helm.sh",
+  "source": {
+    "type": "github_release",
+    "owner": "helm",
+    "repo": "helm"
+  },
+  "download": {
+    "url": "https://get.helm.sh/helm-v{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz",
+    "checksum": {
+      "url": "https://get.helm.sh/helm-v{{.Version}}-{{.OS}}-{{.Arch}}.tar.gz.sha256sum"
+    }
+  },
+  "install": {
+    "mode": "binary",
+    "dest": "bin",
+    "binary_name": "helm",
+    "archive_path": "{{.OS}}-{{.Arch}}/helm"
+  },
+  "detect": {
+    "binary": "bin/helm",
+    "args": [
+      "version"
+    ],
+    "version_regex": "Version:\"v?([0-9]+\\.[0-9]+\\.[0-9]+)\""
+  },
+  "platforms": {
+    "os": {
+      "darwin": "darwin",
+      "linux": "linux"
+    },
+    "arch": {
+      "amd64": "amd64",
+      "arm64": "arm64"
+    }
+  }
+}
